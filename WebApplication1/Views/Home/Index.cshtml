@@ -1,0 +1,42 @@
+﻿@model WebApplication1.Models.SubcriptionPaymentWay
+
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>ASP.NET</h1>
+    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+
+@if (@ViewBag.IsSuccess == true)
+{
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.DisplayFor(model => model.successMessage)
+        </div>
+    </div>
+}
+@using (Html.BeginForm("Process", "Home", FormMethod.Post))
+{
+<div class="form-horizontal">
+    <div class="form-group">
+        @Html.LabelFor(model => model.SelectionOption, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.PaymentWay,
+                  new SelectList(Enum.GetValues(typeof(WebApplication1.Models.SubPaymentWay))),
+                  "Select Gender")
+        </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-offset-2 col-md-10">
+          <input type="submit" value="Process payment" class="btn btn-default" />
+          <input type="submit" value="Clear" id="btnClear" class="btn btn-default"/>
+      </div>
+    </div>
+ 
+</div>
+
+}
