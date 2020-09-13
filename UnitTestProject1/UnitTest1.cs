@@ -12,7 +12,7 @@ namespace UnitTestProject1
         [TestMethod]
         public void BusinessRuleTestForNonPayment()
         {
-            Assert.AreEqual(true, BusinessRuleSystem.PaymentProcessingSystem(0));
+            Assert.AreEqual(false, BusinessRuleSystem.PaymentProcessingSystem((SubPaymentWay)1));
         }
         [TestMethod]
         public void BusinessRuleTestProductBook()
