@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Web;
 using System.Web.Mvc;
 using WebApplication1.BusinessObjects;
 using WebApplication1.Models;
@@ -30,13 +28,14 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-        public ActionResult Process (SubcriptionPaymentWay models)
+        public ActionResult Process(SubcriptionPaymentWay models)
         {
             bool Result = BusinessLogicLayer.BusinessRuleSystem.PaymentProcessingSystem(models.PaymentWay);
 
             if (Result)
             {
                 models.successMessage = GetSuccessMessage(models.PaymentWay);
+                ViewBag.IsSuccess = true;
             }
             return View("Index");
         }
@@ -50,7 +49,7 @@ namespace WebApplication1.Controllers
                 .ToDictionary(f => f.Name, f => f.GetValue(null));
 
             return dict.Single(x => x.Key == Name).Value.ToString();
-            
+
         }
     }
 }
